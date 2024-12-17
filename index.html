@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Emoji Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+            color: #00ff00;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+            background-color: #262626;
+            color: #f0f0f0;
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 1em;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #ff6600;
+        }
+        footer {
+            background-color: #333;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Speech to Emoji Converter</h1>
+    </header>
+    <main>
+        <textarea id="speechInput" placeholder="Type your speech here..."></textarea>
+        <div class="output" id="emojiOutput"></div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Cybersecurity Inc.</p>
+    </footer>
+    <script>
+        document.getElementById('speechInput').addEventListener('input', function() {
+            const inputText = this.value;
+            const emojiMap = {
+                'happy': '😊',
+                'sad': '😢',
+                'angry': '😠',
+                'love': '❤️',
+                'surprised': '😮'
+                // Add more mappings as needed
+            };
+            let outputText = inputText;
+            for (const [word, emoji] of Object.entries(emojiMap)) {
+                const regex = new RegExp(`\\b${word}\\b`, 'gi');
+                outputText = outputText.replace(regex, emoji);
+            }
+            document.getElementById('emojiOutput').textContent = outputText;
+        });
+    </script>
+</body>
+</html>
